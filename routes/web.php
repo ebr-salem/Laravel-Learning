@@ -17,16 +17,14 @@ Route::get('/', function () {
     return view('posts');
 });
 
-Route::get('/posts/{post}', function ($slug) {
-    $path = __DIR__ . "/../resources/posts/$slug.html";
-
-    if (! file_exists($path)) {
+Route::get('/posts/{slug}', function ($slug) {
+    if (!file_exists($path = __DIR__ . "/../resources/posts/$slug.html")) {
         abort(404);
     }
 
-    $post = file_get_contents($path);
+    $post = cache()->remember('post.file', 3600, fn () => file_get_contents($path));
 
     return view('post', [
         'post' => $post
     ]);
-});
+})->where('slug', '[A-z_\-]+');
