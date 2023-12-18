@@ -10,9 +10,12 @@
 
 <body>
     <div class="container">
-        <?= $post ?>
+        <article>
+            <h1>{{ $post->title }}</h1>
 
-        <a href="/">Go Back</a>
+            <?= $post->body ?>
+            <a href="/">Go Back</a>
+        </article>
     </div>
 </body>
 

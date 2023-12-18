@@ -13,7 +13,13 @@
         <div class="posts">
             <h1>Posts</h1>
             <?php foreach ($posts as $post) : ?>
-            <?= $post ?>
+            <article>
+                <h1>
+                    <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                </h1>
+
+                <?= $post->body ?>
+            </article>
             <?php endforeach ?>
         </div>
     </div>
