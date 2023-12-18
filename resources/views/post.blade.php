@@ -13,7 +13,7 @@
         <article>
             <h1>{{ $post->title }}</h1>
 
-            <?= $post->body ?>
+            {!! $post->body !!}
             <a href="/">Go Back</a>
         </article>
     </div>
