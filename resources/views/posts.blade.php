@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     <div class="container">
         <div class="posts">
             <h1>Posts</h1>
@@ -15,4 +13,4 @@
             @endforeach
         </div>
     </div>
-@endsection
+</x-layout>
