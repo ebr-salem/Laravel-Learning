@@ -5,10 +5,10 @@
             @foreach ($posts as $post)
                 <article>
                     <h1>
-                        <a href="/posts/{{ $post->slug }}">{{ $loop->index + 1 }} - {{ $post->title }}</a>
+                        <a href="/posts/{{ $post->id }}">{{ $loop->index + 1 }} - {{ $post->title }}</a>
                     </h1>
 
-                    {!! $post->body !!}
+                    <p>{{ $post->body }}</p>
                 </article>
             @endforeach
         </div>
