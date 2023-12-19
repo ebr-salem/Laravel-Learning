@@ -24,6 +24,7 @@ body {
 
 .filters a {
     text-decoration: none;
+    color: white;
 }
 
 .filters a:hover {
