@@ -2,6 +2,13 @@
     <div class="container">
         <div class="posts">
             <h1>Posts</h1>
+            @if (count($categories))
+                <div class="filters">
+                    @foreach ($categories as $category)
+                        <a href="/posts?category_id={{ $category->id }}">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+            @endif
             @foreach ($posts as $post)
                 <article>
                     <h1>

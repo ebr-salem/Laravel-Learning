@@ -13,6 +13,23 @@ body {
     border-radius: 4px;
 }
 
+.filters {
+    background-color: #44444443;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filters a {
+    text-decoration: none;
+}
+
+.filters a:hover {
+    text-decoration: underline;
+}
+
 article + article {
     margin-top: 50px;
     padding-top: 50px;
