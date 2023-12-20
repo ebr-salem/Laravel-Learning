@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container">
-        <h1>Category: {{ $category->name }}</h1>
+        <h1>Author: {{ $author->name }}</h1>
 
         <div class="posts">
             @if (!count($posts))
@@ -8,11 +8,11 @@
             @else
                 @foreach ($posts as $post)
                     <article>
-                        <a href="/posts/{{ $post->slug }}">
-                            <h2>{{ $post->title }}</h2>
-                        </a>
+                        <h1>
+                            <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                        </h1>
 
-                        by <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in
+                        <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
 
                         <p>{{ $post->body }}</p>
                     </article>

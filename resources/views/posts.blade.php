@@ -17,7 +17,7 @@
                     </h1>
 
                     <div>
-                        by <a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a> in
+                        by <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in
                         <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
                     </div>
 

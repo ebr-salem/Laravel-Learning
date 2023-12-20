@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('posts', [
         'categories' => Category::all(),
-        'posts' => Post::with('category', 'user')->get()
+        'posts' => Post::with(['category', 'author'])->get()
     ]);
 });
 
@@ -29,10 +29,10 @@ Route::get('/posts/{post:slug}', function (Post $post) {
     ]);
 });
 
-Route::get('/users/{user}', function (User $user) {
-    return view('user', [
-        'user' => $user,
-        'posts' => $user->posts,
+Route::get('/authors/{author:username}', function (User $author) {
+    return view('author', [
+        'author' => $author,
+        'posts' => $author->posts,
     ]);
 });
 

@@ -21,10 +21,10 @@ class PostFactory extends Factory
         return [
             'user_id' => User::all()->map(fn ($c) => $c->id)->random(),
             'category_id' => Category::all()->map(fn ($c) => $c->id)->random(),
-            'title' => fake()->sentence,
-            'title' => fake()->sentence,
-            'slug' => fake()->slug,
-            'body' => fake()->paragraph,
+            'title' => fake()->sentence(),
+            'title' => fake()->sentence(),
+            'slug' => fake()->slug(),
+            'body' => fake()->paragraph(),
         ];
     }
 }
