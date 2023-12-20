@@ -16,7 +16,10 @@
                         <a href="/posts/{{ $post->slug }}">{{ $loop->index + 1 }} - {{ $post->title }}</a>
                     </h1>
 
-                    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                    <div>
+                        by <a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a> in
+                        <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                    </div>
 
                     <p>{{ $post->body }}</p>
                 </article>
