@@ -12,7 +12,7 @@
                             <h2>{{ $post->title }}</h2>
                         </a>
 
-                        by <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in
+                        by <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a>
 
                         <p>{{ $post->body }}</p>
                     </article>

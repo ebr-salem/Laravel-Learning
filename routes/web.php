@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('posts', [
         'categories' => Category::all(),
-        'posts' => Post::with(['category', 'author'])->get()
+        'posts' => Post::all()
     ]);
 });
 
