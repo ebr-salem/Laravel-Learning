@@ -1,29 +1,13 @@
 <x-layout>
-    <div class="container">
-        <div class="posts">
-            <h1>Posts</h1>
-            @if (count($categories))
-                <div class="filters">
-                    @foreach ($categories as $category)
-                        <a href="/categories/{{ $category->slug }}">{{ $category->name }}</a>
-                    @endforeach
-                </div>
-            @endif
+    @include('_post-header')
 
-            @foreach ($posts as $post)
-                <article>
-                    <h1>
-                        <a href="/posts/{{ $post->slug }}">{{ $loop->index + 1 }} - {{ $post->title }}</a>
-                    </h1>
-
-                    <div>
-                        by <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in
-                        <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-                    </div>
-
-                    <p>{{ $post->body }}</p>
-                </article>
-            @endforeach
-        </div>
-    </div>
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        @if ($posts->isEmpty())
+            <h1 class="text-3xl text-center">
+                There is no posts
+            </h1>
+        @else
+            <x-posts-grid :posts="$posts" />
+        @endif
+    </main>
 </x-layout>
