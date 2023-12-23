@@ -24,7 +24,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(4),
             'slug' => fake()->unique()->slug(2),
             'exerpt' => fake()->sentence(50),
-            'body' => fake()->paragraph(10),
+            'body' => fake()->paragraph(50),
         ];
     }
 }
