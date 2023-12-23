@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // Just training
         collect($this->names)->map(fn ($name) => User::factory()->create(['name' => $name]));
 
-        category::factory(3)->create();
+        category::factory(20)->create();
         Post::factory(9)->create();
     }
 }
