@@ -18,14 +18,15 @@
     <div class="options bg-gray-300 rounded w-full absolute z-50 max-h-80 overflow-auto" style="display: none"
         x-show="show">
         @php
-            $activeClass = 'bg-blue-700 text-white';
+            // $activeClass = 'bg-blue-700 text-white';
+            $activeClass = '';
         @endphp
 
         <a href="/"
             class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request()->routeIs('home') ? $activeClass : '' }}">All</a>
 
         @foreach ($items as $item)
-            <a href="/categories/{{ $item->slug }}"
+            <a href="/?category={{ $item->slug }}"
                 class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request()->is("categories/$item->slug") ? $activeClass : '' }}">{{ ucwords($item->name) }}</a>
         @endforeach
     </div>
