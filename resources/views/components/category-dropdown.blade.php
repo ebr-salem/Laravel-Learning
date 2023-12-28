@@ -1,8 +1,6 @@
-@props(['items', 'current'])
-
 <div class="inline-block text-left w-2xl relative" x-data="{ show: false }" @click.away="show = false">
     <button class="bg-gray-100 inline-flex pr-24 py-1 relative rounded-full w-full" @click="show = !show">
-        {{ isset($current) ? ucwords($current->name) : 'Categories' }}
+        {{ $current ? ucwords($current->name) : 'Categories' }}
 
         <svg class="transform -rotate-90 absolute right-0 pointer-events-none" style="right: 12px;" width="22"
             height="22" viewBox="0 0 22 22">
@@ -18,16 +16,15 @@
     <div class="options bg-gray-300 rounded w-full absolute z-50 max-h-80 overflow-auto" style="display: none"
         x-show="show">
         @php
-            // $activeClass = 'bg-blue-700 text-white';
-            $activeClass = '';
+            $activeClass = 'bg-blue-700 text-white';
         @endphp
 
         <a href="/"
-            class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request()->routeIs('home') ? $activeClass : '' }}">All</a>
+            class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request('category') == '' ? $activeClass : '' }}">All</a>
 
-        @foreach ($items as $item)
-            <a href="/?category={{ $item->slug }}"
-                class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request()->is("categories/$item->slug") ? $activeClass : '' }}">{{ ucwords($item->name) }}</a>
+        @foreach ($categories as $category)
+            <a href="/?category={{ $category->slug }}"
+                class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ $current == $category ? $activeClass : '' }}">{{ ucwords($category->name) }}</a>
         @endforeach
     </div>
 </div>

@@ -3,8 +3,7 @@
         Latest <span class="text-blue-500">Laravel From Scratch</span> News
     </h1>
     <div class="mt-4">
-        <x-select :items="$categories" :current="$currentCategory ?? null" />
-
+        <x-category-dropdown />
 
         <!-- Other Filters -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
