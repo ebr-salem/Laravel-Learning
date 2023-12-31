@@ -19,7 +19,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::all()->map(fn ($c) => $c->id)->random(),
+            'user_id' => User::all()->map(fn ($u) => $u->id)->random(),
             'category_id' => Category::all()->map(fn ($c) => $c->id)->random(),
             'title' => fake()->sentence(4),
             'slug' => fake()->unique()->slug(2),
