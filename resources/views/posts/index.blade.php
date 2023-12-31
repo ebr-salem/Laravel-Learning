@@ -8,6 +8,8 @@
             </h1>
         @else
             <x-posts-grid :posts="$posts" />
+
+            {{ $posts->links() }}
         @endif
     </main>
 </x-layout>

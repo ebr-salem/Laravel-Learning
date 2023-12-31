@@ -19,11 +19,11 @@
             $activeClass = 'bg-blue-700 text-white';
         @endphp
 
-        <a href="/"
+        <a href="/?{{ http_build_query(request()->except('category', 'page')) }}"
             class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request('category') == '' ? $activeClass : '' }}">All</a>
 
         @foreach ($categories as $category)
-            <a href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
+            <a href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category', 'page')) }}"
                 class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ $current == $category ? $activeClass : '' }}">{{ ucwords($category->name) }}</a>
         @endforeach
     </div>
