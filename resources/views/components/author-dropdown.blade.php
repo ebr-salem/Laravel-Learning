@@ -23,7 +23,7 @@
             class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ request('author') == '' ? $activeClass : '' }}">All</a>
 
         @foreach ($authors as $author)
-            <a href="/?author={{ $author->username }}"
+            <a href="/?author={{ $author->username }}&{{ http_build_query(request()->except('author')) }}"
                 class="pl-1 block w-full hover:bg-blue-700 hover:text-white text-left {{ $current == $author ? $activeClass : '' }}">{{ ucwords($author->name) }}</a>
         @endforeach
     </div>
