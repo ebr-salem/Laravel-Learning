@@ -54,4 +54,13 @@
             </div>
         </footer>
     </section>
+
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-init="setTimeOut(() => show = false)" x-show="show"
+            class="bg-blue-500 bottom-3 fixed p-5 right-3 rounded-full text-white">
+            <p>
+                {{ session('success') }}
+            </p>
+        </div>
+    @endif
 </body>
