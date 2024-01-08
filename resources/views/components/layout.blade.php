@@ -15,8 +15,17 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/register" class="text-xs font-bold uppercase">register</a>
+            <div class="flex justify-between items-center mt-8 md:mt-0">
+                @guest
+                    <a href="/register" class="text-xs font-bold uppercase">register</a>
+                    <a href="/login" class="ml-3 text-xs font-bold uppercase">login</a>
+                @else
+                    <form method="POST" action="/logout">
+                        @csrf
+
+                        <button type="sumit" class="text-xs font-bold uppercase">logout</button>
+                    </form>
+                @endguest
 
                 <a href="#"
                     class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
@@ -55,12 +64,5 @@
         </footer>
     </section>
 
-    @if (session()->has('success'))
-        <div x-data="{ show: true }" x-init="setTimeOut(() => show = false)" x-show="show"
-            class="bg-blue-500 bottom-3 fixed p-5 right-3 rounded-full text-white">
-            <p>
-                {{ session('success') }}
-            </p>
-        </div>
-    @endif
+    <x-flash />
 </body>
