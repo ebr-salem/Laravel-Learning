@@ -54,6 +54,14 @@
                     </p>
                 </div>
             </div>
+
+            <div class="comments col-span-8 col-start-5 mt-3">
+                <h1 class="text-2xl font-bold mt-3">comments ({{ count($post->comments) }})</h1>
+
+                @foreach ($post->comments as $comment)
+                    <x-comment-card :comment="$comment" />
+                @endforeach
+            </div>
         </article>
     </main>
 </x-layout>
