@@ -2,7 +2,7 @@
 
 <article class="border border-gray-200 bg-gray-100 rounded col-span-8 col-start-5 mt-3 p-6 flex gap-3">
     <div class="flex-shrink-0">
-        <img class="rounded-full" width="60" height="60" src="https://picsum.photos/80/80?u={{ $comment->id }}" alt="{{ $comment->author->name }}">
+        <img class="rounded-full" width="60" height="60" src="https://picsum.photos/80/80?u={{ $comment->author->id }}" alt="{{ $comment->author->name }}">
     </div>
 
     <div>

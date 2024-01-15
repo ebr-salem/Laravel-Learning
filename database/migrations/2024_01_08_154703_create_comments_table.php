@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->text('body');
-            $table->timestamp('posted_at');
             $table->timestamps();
         });
     }

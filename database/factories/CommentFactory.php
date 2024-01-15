@@ -22,7 +22,6 @@ class CommentFactory extends Factory
             'user_id' => User::all()->map(fn ($u) => $u->id)->random(),
             'post_id' => Post::all()->map(fn ($p) => $p->id)->random(),
             'body' => fake()->sentence(15),
-            'posted_at' => now()
         ];
     }
 }

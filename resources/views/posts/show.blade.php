@@ -58,7 +58,30 @@
             <div class="comments col-span-8 col-start-5 mt-3">
                 <h1 class="text-2xl font-bold mt-3">comments ({{ count($post->comments) }})</h1>
 
-                @foreach ($post->comments as $comment)
+                <form method="POST" action="/posts/{{ $post->slug }}/comment/store">
+                    @csrf
+
+                    <article class="border border-gray-200 bg-gray-100 rounded col-span-8 col-start-5 mt-3 p-6 flex gap-3">
+                        <div class="flex-shrink-0">
+                            <img class="rounded-full" width="60" height="60" src="https://picsum.photos/80/80?u={{ auth()->user()->id }}" alt="{{ auth()->user()->name }}">
+                        </div>
+
+                        <div>
+                            <header class="mb-3">
+                                <h3 class="font-bold">{{ auth()->user()->name }}</h3>
+                            </header>
+
+                            <textarea class="focus:outline-none py-1 px-3" name="body" id="body" cols="50" rows="3"></textarea>
+
+                            <div>
+                                <button type="submit"
+                                    class="flex w-1/4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Send</button>
+                            </div>
+                        </div>
+                    </article>
+                </form>
+
+                @foreach ($post->comments->sortDesc() as $comment)
                     <x-comment-card :comment="$comment" />
                 @endforeach
             </div>
