@@ -14,9 +14,8 @@ class CommentController extends Controller
             'body' => 'required|min:3'
         ]);
 
-        Comment::create([
-            'user_id' => auth()->user()->id,
-            'post_id' => $post->id,
+        $post->comments()->create([
+            'user_id' => $request->user()->id,
             'body' => $request->body
         ]);
 
