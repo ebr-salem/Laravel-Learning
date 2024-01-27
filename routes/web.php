@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\PostCondition;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
@@ -20,3 +21,5 @@ Route::get('login', [LoginController::class, 'create'])->middleware('guest');
 Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
+
+Route::get('admin', [PostController::class, 'create'])->middleware('admin');
