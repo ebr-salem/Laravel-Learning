@@ -37,11 +37,12 @@ class PostController extends Controller
             'exerpt' => 'required|min:10|max:255',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'body' => 'required|min:10',
+            'thumbnail' => 'required|image'
         ]);
 
         $attributes['user_id'] = auth()->user()->id;
         $attributes['slug'] = strtolower(Str::of($attributes['title'])->slug('-')) . '-' . $attributes['user_id'] . '-' . $attributes['category_id'];
-        // I can check if the slug is exists or not later
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         $post = Post::create($attributes);
 

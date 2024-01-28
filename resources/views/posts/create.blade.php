@@ -1,6 +1,8 @@
 <x-layout>
     <div class="p-6 m-auto w-1/2">
-        <form method="POST" action="/admin/posts/store">
+        <h1 class="text-3xl font-bold mb-6 m-auto w-1/2">Create Post</h1>
+
+        <form method="POST" action="/admin/posts/store" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-6">
@@ -56,6 +58,15 @@
                 @error('body')
                     <div class="text-red-500 text-xs mt-1 mb-2">{{ $message }}</div>
                 @enderror
+            </div>
+
+            <div class="mb-6">
+                <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="thumbnail">
+                    thumbnail
+                </label>
+
+                <input class="border border-gray-400 p-2 w-full" type="file" name="thumbnail" id="thumbnail"
+                    required>
             </div>
 
             <div class="mb-6">
