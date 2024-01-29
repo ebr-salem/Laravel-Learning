@@ -7,7 +7,9 @@
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <style>
-    html { scroll-behavior: smooth }
+    html {
+        scroll-behavior: smooth
+    }
 </style>
 
 <body style="font-family: Open Sans, sans-serif">
@@ -19,7 +21,10 @@
                 </a>
             </div>
 
-            <div class="flex justify-between items-center mt-8 md:mt-0">
+            <div class="flex justify-between items-center gap-3 mt-8 md:mt-0">
+                @if (auth()->check() && auth()->user()->username == 'ebrahim123' && !request()->routeIs('posts.create'))
+                    <a href="{{ route('posts.create') }}" class="text-xs font-bold uppercase">Settings</a>
+                @endif
                 @guest
                     <a href="/register" class="text-xs font-bold uppercase">register</a>
                     <a href="/login" class="ml-3 text-xs font-bold uppercase">login</a>
@@ -40,7 +45,8 @@
 
         {{ $slot }}
 
-        <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+        <footer id="newsletter"
+            class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl z-50">Stay in touch with the latest posts</h5>
             <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>

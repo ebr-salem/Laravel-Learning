@@ -21,5 +21,5 @@ Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin')->name('posts.create');
 Route::post('admin/posts/store', [PostController::class, 'store'])->middleware('admin');
