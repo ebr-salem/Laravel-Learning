@@ -22,9 +22,9 @@
             </div>
 
             <div class="flex justify-between items-center gap-3 mt-8 md:mt-0">
-                @if (auth()->check() && auth()->user()->username == 'ebrahim123' && !str_starts_with(request()->path(), 'admin'))
+                @admin
                     <a href="{{ route('posts.create') }}" class="text-xs font-bold uppercase">Settings</a>
-                @endif
+                @endadmin
                 @guest
                     <a href="/register" class="text-xs font-bold uppercase">register</a>
                     <a href="/login" class="ml-3 text-xs font-bold uppercase">login</a>

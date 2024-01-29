@@ -21,11 +21,12 @@ Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::middleware('admin')->controller(PostController::class)->name('posts.')->group(function () {
+Route::middleware('can:admin')->controller(PostController::class)->name('posts.')->group(function () {
+    // you can use the Route::resource() if you want
     Route::get('admin/posts/create',  'create')->name('create');
-    Route::post('admin/posts/store',  'store')->name('store');
+    Route::post('admin/posts',  'store')->name('store');
 
     Route::get('admin/posts/{post:slug}/edit',  'edit')->name('edit');
-    Route::patch('admin/posts/{post:slug}/update',  'update')->name('update');
-    Route::delete('admin/posts/{post:slug}/delete',  'destroy')->name('delete');
+    Route::patch('admin/posts/{post:slug}',  'update')->name('update');
+    Route::delete('admin/posts/{post:slug}',  'destroy')->name('delete');
 });
