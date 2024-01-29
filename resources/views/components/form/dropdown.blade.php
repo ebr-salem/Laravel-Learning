@@ -1,10 +1,10 @@
-@props(['name', 'items'])
+@props(['name', 'items', 'selected' => []])
 <x-form.field>
     <x-form.label :name="$name" />
 
     <select name="{{ $name }}" id="{{ $name }}" class="p-2 w-full">
         @foreach ($items as $item)
-            <option value="{{ $item->id }}" {{ old($name) == $item->id ? 'selected' : '' }}>
+            <option value="{{ $item->id }}" {{ old($name) == $item->id || $selected == $item ? 'selected' : '' }}>
                 {{ $item->name }}</option>
         @endforeach
     </select>

@@ -32,20 +32,53 @@ class PostController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required|min:5|max:255',
-            'exerpt' => 'required|min:10|max:255',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
-            'body' => 'required|min:10',
-            'thumbnail' => 'required|image'
-        ]);
-
-        $attributes['user_id'] = auth()->user()->id;
-        $attributes['slug'] = strtolower(Str::of($attributes['title'])->slug('-')) . '-' . $attributes['user_id'] . '-' . $attributes['category_id'];
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        $attributes = $this->validatePost();
 
         $post = Post::create($attributes);
 
         return redirect("/posts/$post->slug")->withSuccess('Your post has been created successfully!');
+    }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function update(Post $post)
+    {
+        $attributes = $this->validatePost();
+
+        $post->update($attributes);
+
+        return redirect("/posts/$post->slug")->withSuccess('Your post has been updated successfully!');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect("/")->with('error', 'Your post has been deleted successfully!');
+    }
+
+    protected function validatePost()
+    {
+        $attributes = request()->validate([
+            'title' => 'required|min:5|max:255',
+            'exerpt' => 'required|min:10',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'body' => 'required|min:10',
+            'thumbnail' => 'image'
+        ]);
+
+        $attributes['user_id'] = auth()->user()->id;
+        $attributes['slug'] = strtolower(Str::of($attributes['title'])->slug('-')) . '-' . $attributes['user_id'] . '-' . $attributes['category_id'];
+        if ($attributes['thumbnail'] ?? false) {
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        return $attributes;
     }
 }

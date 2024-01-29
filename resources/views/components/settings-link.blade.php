@@ -1,6 +1,6 @@
-@props(['name', 'to'])
+@props(['name', 'active' => false])
 <li>
-    <a href="{{ route($to) }}" class="{{ request()->routeIs($to) ? 'text-blue-500' : '' }} block mb-2 capitalize">
+    <a {{ $attributes }} class="{{ $active ? 'text-blue-500' : '' }} block mb-2 capitalize">
         {{ $name }}
     </a>
 </li>

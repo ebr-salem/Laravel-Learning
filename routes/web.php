@@ -21,5 +21,11 @@ Route::post('login', [LoginController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin')->name('posts.create');
-Route::post('admin/posts/store', [PostController::class, 'store'])->middleware('admin');
+Route::middleware('admin')->controller(PostController::class)->name('posts.')->group(function () {
+    Route::get('admin/posts/create',  'create')->name('create');
+    Route::post('admin/posts/store',  'store')->name('store');
+
+    Route::get('admin/posts/{post:slug}/edit',  'edit')->name('edit');
+    Route::patch('admin/posts/{post:slug}/update',  'update')->name('update');
+    Route::delete('admin/posts/{post:slug}/delete',  'destroy')->name('delete');
+});

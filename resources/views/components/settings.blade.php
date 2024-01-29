@@ -10,8 +10,8 @@
 
             <ul>
                 {{-- <x-settings-link name="dashbord" to="dashbord" /> --}}
-                <x-settings-link name="new post" to="posts.create" />
-                {{-- <x-settings-link name="edit post" to="posts.edit" /> --}}
+                <x-settings-link :href="route('posts.create')" :active="request()->routeIs('posts.create')" name="new post" />
+                <x-settings-link :href="route('home')" :active="request()->routeIs('posts.edit')" name="edit post" />
             </ul>
         </aside>
 
